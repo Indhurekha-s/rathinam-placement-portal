@@ -7,10 +7,14 @@ const { dbHelper } = require('./database');
 console.log('--- Starting Complete Dataset Import (100 Students & 20 Companies) ---');
 
 function runImport() {
-  const studentsPath = path.join(__dirname, '..', 'dataset', '100_Students_List.xlsx');
-  const companiesPath = path.join(__dirname, '..', 'dataset', 'Companies_List.xlsx');
+  const candidates = [
+    path.join(__dirname, 'dataset', '100_Students_List.xlsx'),
+    path.join(__dirname, '..', 'dataset', '100_Students_List.xlsx')
+  ];
+  const studentsPath = candidates.find(p => fs.existsSync(p));
+  const companiesPath = studentsPath ? path.join(path.dirname(studentsPath), 'Companies_List.xlsx') : null;
 
-  if (!fs.existsSync(studentsPath) || !fs.existsSync(companiesPath)) {
+  if (!studentsPath || !companiesPath || !fs.existsSync(companiesPath)) {
     throw new Error('Dataset files not found in dataset/ folder');
   }
 

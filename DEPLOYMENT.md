@@ -20,10 +20,9 @@ git push -u origin main
 1. Log into your [Vercel Dashboard](https://vercel.com/dashboard).
 2. Click **Add New** > **Project** and select your repository.
 3. Configure the project settings:
-   - **Framework Preset**: `Vite` (automatically detected from `vercel.json`)
+   - **Framework Preset**: `Services` (or automatically detected from `vercel.json`)
    - **Root Directory**: `./` (leave as project root)
-   - **Build Command**: auto-configured in `vercel.json`
-   - **Output Directory**: `frontend/dist` (auto-configured in `vercel.json`)
+   - Build and routing are fully managed by the `services` definition in `vercel.json`.
 
 ### Step 3: Configure Environment Variables
 In the Vercel Project Settings > **Environment Variables**, add:
